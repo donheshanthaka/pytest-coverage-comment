@@ -35,4 +35,20 @@ const getContentFile = (pathToFile) => {
   return content;
 };
 
-module.exports = { getPathToFile, getContentFile };
+const getContent = (filePath) => {
+  try {
+    const fullFilePath = getPathToFile(filePath);
+
+    if (fullFilePath) {
+      const content = getContentFile(fullFilePath);
+
+      return content;
+    }
+  } catch (error) {
+    core.error(`Could not get content of "${filePath}". ${error.message}`);
+  }
+
+  return null;
+};
+
+module.exports = { getPathToFile, getContentFile, getContent };
