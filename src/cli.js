@@ -53,7 +53,7 @@ const main = async () => {
     commit: 'f9d42291812ed03bb197e48050ac38ac6befe4e5',
     prefix,
     pathPrefix: '',
-    // covFile: getPathToFile(covFile),
+    covFile: getPathToFile(covFile),
     xmlFile: getPathToFile(xmlFile),
     covXmlFile: getPathToFile(covXmlFile),
     defaultBranch: 'main',
