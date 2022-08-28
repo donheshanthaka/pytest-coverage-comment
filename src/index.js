@@ -112,14 +112,15 @@ const main = async () => {
     multipleFilesHtml = `\n\n${getMultipleReport(options)}`;
   }
 
-  if (html.length + summaryReport.length > MAX_COMMENT_LENGTH) {
+  if (
+    !options.hideReport &&
+    html.length + summaryReport.length > MAX_COMMENT_LENGTH
+  ) {
     // generate new html without report
-    core.warning(
-      `Your comment is too long (maximum is ${MAX_COMMENT_LENGTH} characters), coverage report will not be added.`
-    );
-    core.warning(
-      `Try add: "--cov-report=term-missing:skip-covered", or add "hide-report: true", or add "report-only-changed-files: true", or switch to "multiple-files" mode`
-    );
+    // prettir-ignore
+    core.warning(`Your comment is too long (maximum is ${MAX_COMMENT_LENGTH} characters), coverage report will not be added.`);
+    // prettir-ignore
+    core.warning(`Try add: "--cov-report=term-missing:skip-covered", or add "hide-report: true", or add "report-only-changed-files: true", or switch to "multiple-files" mode`);
     report = getSummaryReport({ ...options, hideReport: true });
   }
 
