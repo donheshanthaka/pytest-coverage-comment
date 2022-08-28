@@ -29,9 +29,7 @@ const getCoverageReport = (options) => {
     const isValid = isValidCoverageContent(content);
 
     if (content && !isValid) {
-      core.error(
-        `Error: coverage file "${covFilePath}" has bad format or wrong data`
-      );
+      core.error(`Coverage file "${covFilePath}" has bad format or wrong data`);
     }
 
     if (content && isValid) {
@@ -272,7 +270,8 @@ const toRow = (item, indent = false, options) => {
   const missing = toMissingTd(item, options);
   const lastTd = options.hasMissing ? `<td>${missing}</td>` : '';
 
-  return `<tr><td>${name}</td><td>${stmts}</td><td>${miss}</td><td>${cover}</td>${lastTd}</tr>`;
+  // prettier-ignore
+  return `<tr><td>${name.replace(/__/g, '\\_\\_')}</td><td>${stmts}</td><td>${miss}</td><td>${cover}</td>${lastTd}</tr>`;
 };
 
 // make summary row - tr
