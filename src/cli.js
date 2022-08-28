@@ -7,6 +7,7 @@ const {
   getNotSuccessTest,
 } = require('./junitXml');
 const { getMultipleReport } = require('./multiFiles');
+const { getCoverageXmlReport } = require('./parseXml');
 
 /*  
   Usefull git commands
@@ -33,8 +34,9 @@ const getPathToFile = (pathToFile) => {
 };
 
 const main = async () => {
-  const covFile = './../data/pytest-coverage_4.txt';
+  const covFile = './../data/pytest-coverage_9.txt';
   const xmlFile = './../data/pytest_1.xml';
+  const covXmlFile = './../data/coverage_2.xml';
   const prefix = path.dirname(path.dirname(path.resolve(covFile))) + '/';
   // eslint-disable-next-line
   const multipleFiles = [
@@ -53,6 +55,7 @@ const main = async () => {
     pathPrefix: '',
     covFile: getPathToFile(covFile),
     xmlFile: getPathToFile(xmlFile),
+    covXmlFile: getPathToFile(covXmlFile),
     defaultBranch: 'main',
     head: 'feat/test',
     base: 'main',
@@ -74,6 +77,8 @@ const main = async () => {
       ],
     },
   };
+
+  // const myTest = getCoverageXmlReport(options);
 
   const { html } = getCoverageReport(options);
   const summaryReport = getSummaryReport(options);

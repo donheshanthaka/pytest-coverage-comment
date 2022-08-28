@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const { getPathToFile, getContentFile } = require('./utils');
+const { getCoverageReportXml } = require('./parseXml');
 
 // return true if "covergae file" include all special words
 const isValidCoverageContent = (data) => {
@@ -20,11 +21,14 @@ const isValidCoverageContent = (data) => {
 
 // return full html coverage report and coverage percenatge
 const getCoverageReport = (options) => {
-  const { covFile } = options;
+  const { covFile, covXmlFile } = options;
 
   try {
-    const covFilePath = getPathToFile(covFile);
+    const covFilePath = getPathToFile(covXmlFile);
     const content = getContentFile(covFilePath);
+
+    const coverageData = getCoverageReportXml(content);
+
     const coverage = getTotalCoverage(content);
     const isValid = isValidCoverageContent(content);
 
