@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - test-coverage-xml
+      - test-branch
 jobs:
   test-branch:
     runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
 
       - name: Pytest coverage comment
         id: coverageComment
-        uses: MishaKav/pytest-coverage-comment@add-support-for-coverage-xml
+        uses: MishaKav/pytest-coverage-comment@skip-coverage-warning
         with:
           pytest-xml-coverage-path: ./data/coverage_1.xml
           # pytest-coverage-path: ./data/pytest-coverage_4.txt
