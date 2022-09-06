@@ -15,7 +15,7 @@ jobs:
         id: coverageComment
         uses: MishaKav/pytest-coverage-comment@skip-coverage-warning
         with:
-          # pytest-xml-coverage-path: ./data/coverage_1.xml
+          # pytest-xml-coverage-path: ./data/coverage_1.xml 
           pytest-coverage-path: ./data/pytest-coverage_4.txt
           junitxml-path: ./data/pytest_1.xml
 
